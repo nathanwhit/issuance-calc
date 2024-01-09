@@ -1,0 +1,22 @@
+{
+  "name": "issuance-calc",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "author": "Nathan Whitaker",
+  "license": "MIT",
+  "dependencies": {
+    "@polkadot/api": "^10.11.2",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@polkadot/typegen": "^10.11.2",
+    "typescript": "^5.3.3"
+  },
+  "scripts": {
+    "build": "yarn run tsc",
+    "runit": "yarn build && node dist/index.js",
+    "generate:defs": "npx esno node_modules/.bin/polkadot-types-from-defs --package issuance-calc/src/interfaces --input ./src/interfaces --endpoint ./metadata.json",
+    "generate:meta": "npx esno node_modules/.bin/polkadot-types-from-chain --package issuance-calc/src/interfaces  --endpoint ./metadata.json --output ./src/interfaces",
+    "build:types": "yarn generate:defs && yarn generate:meta"
+  }
+}
